@@ -4,6 +4,7 @@ import {
   Text,
   View
 } from 'react-native';
+import { LoginButton } from 'react-native-fbsdk';
 
 class HackafyNative extends Component {
   render() {
@@ -19,6 +20,11 @@ class HackafyNative extends Component {
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
+        <LoginButton
+          onLoginFinished={() => {}}
+          onLogoutFinished={() => {}}
+          defaultAudience='everyone'
+        />
       </View>
     );
   }

@@ -1,4 +1,6 @@
 import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
+import { getIsAuthenticating } from '~/redux/store/rootReducer';
 import { View } from 'react-native';
 import { HackafyNavigator } from '~/containers';
 import { PreSplash } from '~/components';
@@ -21,8 +23,10 @@ AppContainer.propTypes = {
   isAuthenticating: PropTypes.bool.isRequired,
 };
 
-AppContainer.defaultProps = {
-  isAuthenticating: true,
-};
+const mapStateToProps = (state) => ({
+  isAuthenticating: getIsAuthenticating(state),
+});
 
-export default AppContainer;
+export default connect(
+  mapStateToProps
+)(AppContainer);

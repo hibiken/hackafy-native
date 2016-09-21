@@ -2,7 +2,8 @@ import axios from 'axios';
 import {
   AUTH_REQUEST_START,
   AUTH_REQUEST_SUCCESS,
-  AUTH_REQUEST_FAILURE
+  AUTH_REQUEST_FAILURE,
+  SET_CURRENT_USER,
 } from '../actionTypes';
 
 export const loginWithFacebook = ({facebookId, username}) => (dispatch) => {
@@ -22,6 +23,7 @@ export const loginWithFacebook = ({facebookId, username}) => (dispatch) => {
     dispatch({
       type: AUTH_REQUEST_SUCCESS,
       authToken: data.user.authenticationToken,
+      payload: data.user,
     });
     // TODO: set currentUser.
   }, (error) => {

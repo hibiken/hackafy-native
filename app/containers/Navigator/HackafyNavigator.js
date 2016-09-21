@@ -1,10 +1,11 @@
 import React, { PropTypes, Component } from 'react';
 import { Navigator } from 'react-native';
-import { SplashContainer } from '~/containers';
+import { SplashContainer, FooterTabsContainer } from '~/containers';
 
 class HackafyNavigator extends Component {
   renderScene = (route, navigator) => {
-    return <SplashContainer />
+    return <FooterTabsContainer navigator={navigator} />
+    //return <SplashContainer />
   }
 
   configureScene = (route) => {

@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import authentication, * as fromAuth from '../reducers/authentication';
+import activeFooterTab, * as fromActiveFooterTab from '../reducers/activeFooterTab';
 
 const rootReducer = combineReducers({
   authentication,
+  activeFooterTab,
 });
 
 /*** Authentication ***/
@@ -16,6 +18,11 @@ export const getAuthToken = (state) => {
 
 export const getIsAuthed = (state) => {
   return fromAuth.getIsAuthed(state.authentication);
+};
+
+/*** ActiveFooterTab ***/
+export const getActiveFooterTab = (state) => {
+  return fromActiveFooterTab.getActiveFooterTab(state.activeFooterTab);
 };
 
 

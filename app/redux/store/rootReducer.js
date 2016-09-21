@@ -2,11 +2,13 @@ import { combineReducers } from 'redux';
 import authentication, * as fromAuth from '../reducers/authentication';
 import currentUser, * as fromCurrentUser from '../reducers/currentUser';
 import activeFooterTab, * as fromActiveFooterTab from '../reducers/activeFooterTab';
+import posts, * as fromPosts from '../reducers/posts';
 
 const rootReducer = combineReducers({
   authentication,
   currentUser,
   activeFooterTab,
+  posts,
 });
 
 /*** Authentication ***/

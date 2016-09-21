@@ -4,8 +4,10 @@ import { SplashContainer, FooterTabsContainer } from '~/containers';
 
 class HackafyNavigator extends Component {
   renderScene = (route, navigator) => {
+    if (this.props.isAuthed === false) {
+      return <SplashContainer />
+    }
     return <FooterTabsContainer navigator={navigator} />
-    //return <SplashContainer />
   }
 
   configureScene = (route) => {
@@ -21,5 +23,9 @@ class HackafyNavigator extends Component {
     );
   }
 }
+
+HackafyNavigator.propTypes = {
+  isAuthed: PropTypes.bool.isRequired,
+};
 
 export default HackafyNavigator;

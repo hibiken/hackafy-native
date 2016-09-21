@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import { getIsAuthenticating } from '~/redux/store/rootReducer';
+import { getIsAuthenticating, getIsAuthed } from '~/redux/store/rootReducer';
 import { View } from 'react-native';
 import { HackafyNavigator } from '~/containers';
 import { PreSplash } from '~/components';
@@ -12,7 +12,7 @@ class AppContainer extends Component {
         {
           this.props.isAuthenticating === true
           ? <PreSplash />
-          : <HackafyNavigator />
+          : <HackafyNavigator isAuthed={this.props.isAuthed} />
         }
       </View>
     );
@@ -21,10 +21,12 @@ class AppContainer extends Component {
 
 AppContainer.propTypes = {
   isAuthenticating: PropTypes.bool.isRequired,
+  isAuthed: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticating: getIsAuthenticating(state),
+  isAuthed: getIsAuthed(state),
 });
 
 export default connect(

@@ -1,3 +1,9 @@
+import {
+  AUTH_REQUEST_START,
+  AUTH_REQUEST_SUCCESS,
+  AUTH_REQUEST_FAILURE
+} from '~/redux/actions/actionTypes';
+
 const initialState = {
   isAuthed: false,
   isAuthenticating: false,
@@ -6,6 +12,22 @@ const initialState = {
 
 const authentication = (state = initialState, action) => {
   switch (action.type) {
+    case AUTH_REQUEST_START:
+      return {
+        ...state,
+        isAuthenticating: true,
+      }
+    case AUTH_REQUEST_SUCCESS:
+      return {
+        isAuthed: true,
+        isAuthenticating: false,
+        authToken: action.authToken,
+      }
+    case AUTH_REQUEST_FAILURE:
+      return {
+        ...state,
+        isAuthenticating: false,
+      } // TODO: display error message
     default:
       return state;
   }

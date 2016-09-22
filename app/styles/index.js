@@ -8,6 +8,7 @@ export const colors = {
   yello: '#fccc63',
   redViolet: '#bc2a8d',
   redOrange: '#e95950',
+  backgroundGrey: '#fafafa',
 };
 
 export const fontSizes = {

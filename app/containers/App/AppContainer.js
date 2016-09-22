@@ -4,8 +4,16 @@ import { getIsAuthenticating, getIsAuthed } from '~/redux/store/rootReducer';
 import { View } from 'react-native';
 import { HackafyNavigator } from '~/containers';
 import { PreSplash } from '~/components';
+import { firebaseAuth } from '~/config/constants';
+import { onAuthChange } from '~/redux/actions';
 
 class AppContainer extends Component {
+  componentDidMount() {
+    firebaseAuth.onAuthStateChanged((user) => {
+      this.props.dispatch(onAuthChange(user));
+    })
+  }
+
   render() {
     return (
       <View style={{flex: 1}}>

@@ -1,9 +1,11 @@
 import {
-  loginWithFacebook,
+  handleAuthWithFirebase,
+  onAuthChange,
 } from './actionCreators/authentication';
 import { setFooterTab } from './actionCreators/activeFooterTab';
 
 export {
-  loginWithFacebook,
+  handleAuthWithFirebase,
+  onAuthChange,
   setFooterTab,
 };

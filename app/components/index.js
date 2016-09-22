@@ -6,3 +6,5 @@ export PreSplash from './PreSplash/PreSplash';
 export FooterTabs from './FooterTabs/FooterTabs';
 export HackafyNavbar from './HackafyNavbar/HackafyNavbar';
 export Gear from './Icons/Gear';
+export Close from './Icons/Close';
+export Settings from './Settings/Settings';

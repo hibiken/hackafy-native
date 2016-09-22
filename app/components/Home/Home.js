@@ -5,10 +5,7 @@ import { HackafyNavbar, Gear } from '~/components';
 const Home = (props) => {
   return (
     <View>
-      <HackafyNavbar
-        title="Home"
-        rightButton={<Gear onPress={() => console.log('hi') } />}
-      />
+      <HackafyNavbar title="Home"/>
       <Text>Home!!!</Text>
     </View>
   );

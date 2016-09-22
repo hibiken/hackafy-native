@@ -5,3 +5,4 @@ export ProfileContainer from './Profile/ProfileContainer';
 export HackafyNavigator from './Navigator/HackafyNavigator';
 export SplashContainer from './Splash/SplashContainer';
 export FooterTabsContainer from './FooterTabs/FooterTabsContainer';
+export SettingsContainer from './Settings/SettingsContainer';

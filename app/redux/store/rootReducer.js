@@ -3,13 +3,22 @@ import authentication, * as fromAuth from '../reducers/authentication';
 import currentUser, * as fromCurrentUser from '../reducers/currentUser';
 import activeFooterTab, * as fromActiveFooterTab from '../reducers/activeFooterTab';
 import posts, * as fromPosts from '../reducers/posts';
+import { LOG_OUT } from '~/redux/actions/actionTypes';
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   authentication,
   currentUser,
   activeFooterTab,
   posts,
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === LOG_OUT) {
+    state = undefined;
+  }
+
+  return appReducer(state, action);
+}
 
 /*** Authentication ***/
 export const getIsAuthenticating = (state) => {

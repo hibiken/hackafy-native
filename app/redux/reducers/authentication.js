@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   isAuthed: false,
-  isAuthenticating: false,
+  isAuthenticating: true,
   authToken: '',
 };
 

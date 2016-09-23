@@ -4,8 +4,9 @@ import {
   AUTH_REQUEST_SUCCESS,
   AUTH_REQUEST_FAILURE,
   SET_CURRENT_USER,
+  LOG_OUT,
 } from '../actionTypes';
-import { getAccessToken, authWithToken } from '~/api/auth';
+import { getAccessToken, authWithToken, logout } from '~/api/auth';
 
 export const handleAuthWithFirebase = () => (dispatch) => {
   dispatch({type: AUTH_REQUEST_START})
@@ -42,4 +43,9 @@ export const onAuthChange = (user) => (dispatch) => {
       }) // TODO: display error message
     });
   }
+};
+
+export const handleLogout = () => (dispatch) => {
+  logout();
+  dispatch({type: LOG_OUT});
 }

@@ -14,4 +14,5 @@ export const colors = {
 export const fontSizes = {
   primary: 20,
   secondary: 16,
+  small: 13,
 };

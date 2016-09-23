@@ -26,3 +26,9 @@ const currentUser = (state = initialState, action) => {
 }
 
 export default currentUser;
+
+export const getCurrentUser = (state) => state.attributes;
+export const getPostIds = (state) => state.postIds;
+export const getFollowingIds = (state) => state.followingIds;
+export const getFollowerIds = (state) => state.followerIds;
+export const getLikedPostIds = (state) => state.likedPostIds;

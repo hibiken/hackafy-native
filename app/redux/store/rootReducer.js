@@ -33,6 +33,23 @@ export const getIsAuthed = (state) => {
   return fromAuth.getIsAuthed(state.authentication);
 };
 
+/*** currentUser ***/
+export const getCurrentUser = (state) => {
+  return fromCurrentUser.getCurrentUser(state.currentUser);
+};
+
+export const getCurrentUserPostIds = (state) => {
+  return fromCurrentUser.getPostIds(state.currentUser);
+};
+
+export const getCurrentUserFollowerIds = (state) => {
+  return fromCurrentUser.getFollowerIds(state.currentUser);
+};
+
+export const getCurrentUserFollowingIds = (state) => {
+  return fromCurrentUser.getFollowingIds(state.currentUser);
+};
+
 /*** ActiveFooterTab ***/
 export const getActiveFooterTab = (state) => {
   return fromActiveFooterTab.getActiveFooterTab(state.activeFooterTab);

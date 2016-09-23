@@ -7,6 +7,7 @@ import {
   LOG_OUT,
 } from '../actionTypes';
 import { getAccessToken, authWithToken, logout } from '~/api/auth';
+import { API_URL } from '~/config/constants';
 
 export const handleAuthWithFirebase = () => (dispatch) => {
   dispatch({type: AUTH_REQUEST_START})
@@ -22,7 +23,7 @@ export const onAuthChange = (user) => (dispatch) => {
     const userData = user.providerData[0];
     return axios({
       method: 'POST',
-      url: 'http://localhost:5000/api/users/facebook/login',
+      url: `${API_URL}/users/facebook/login`,
       data: {
         facebookId: userData.uid,
         username: userData.displayName,

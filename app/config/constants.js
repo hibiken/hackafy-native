@@ -11,7 +11,10 @@ firebase.initializeApp({
 const firebaseAuth = firebase.auth();
 const facebookProvider = firebase.auth.FacebookAuthProvider;
 
+const API_URL = 'https://enigmatic-mountain-38641.herokuapp.com/api';
+
 export {
   firebaseAuth,
   facebookProvider,
+  API_URL,
 }

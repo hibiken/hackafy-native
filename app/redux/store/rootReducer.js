@@ -50,6 +50,11 @@ export const getCurrentUserFollowingIds = (state) => {
   return fromCurrentUser.getFollowingIds(state.currentUser);
 };
 
+export const getCurrentUsersPosts = (state) => {
+  const postIds = fromCurrentUser.getPostIds(state.currentUser);
+  return fromPosts.getPostByIds(state.posts, postIds);
+};
+
 /*** ActiveFooterTab ***/
 export const getActiveFooterTab = (state) => {
   return fromActiveFooterTab.getActiveFooterTab(state.activeFooterTab);

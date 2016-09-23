@@ -1,9 +1,19 @@
 import React, { PropTypes } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { HackafyNavbar, Gear } from '~/components';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ListView,
+  Dimensions,
+} from 'react-native';
+import { HackafyNavbar, Gear, PhotoItem } from '~/components';
 import { colors, fontSizes } from '~/styles';
+const { width } = Dimensions.get('window');
 
 const Profile = (props) => {
+  console.log('props', props);
   return (
     <View>
       <HackafyNavbar
@@ -19,7 +29,7 @@ const Profile = (props) => {
         </View>
         <View style={styles.userDetailWrapper}>
           <View style={styles.userInfoCount}>
-            <Text>{props.postIds.length} posts</Text>
+            <Text>{props.postsCount} posts</Text>
             <Text>{props.followerIds.length} followers</Text>
             <Text>{props.followingIds.length} following</Text>
           </View>
@@ -29,6 +39,13 @@ const Profile = (props) => {
             </TouchableOpacity>
           </View>
         </View>
+      </View>
+      <View style={styles.photoGallery}>
+        <ListView
+          contentContainerStyle={styles.list}
+          renderRow={props.renderRow}
+          dataSource={props.dataSource}
+        />
       </View>
     </View>
   );
@@ -75,15 +92,24 @@ const styles = StyleSheet.create({
     color: '#262626',
     fontWeight: '600',
     fontSize: fontSizes.small,
+  },
+  photoGallery: {
+    flex: 2,
+  },
+  list: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   }
 })
 
 Profile.propTypes = {
   handleToSettings: PropTypes.func.isRequired,
   avatarURL: PropTypes.string.isRequired,
-  postIds: PropTypes.array.isRequired,
   followerIds: PropTypes.array.isRequired,
   followingIds: PropTypes.array.isRequired,
+  dataSource: PropTypes.object.isRequired,
+  renderRow: PropTypes.func.isRequired,
+  postsCount: PropTypes.number.isRequired,
 }
 
 export default Profile;

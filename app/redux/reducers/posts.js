@@ -42,3 +42,7 @@ export default combineReducers({
   byId,
   isFetching,
 });
+
+export const getPostByIds = (state, ids = []) => {
+  return ids.map(id => state.byId[id]);
+}

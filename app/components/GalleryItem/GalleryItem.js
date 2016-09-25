@@ -1,5 +1,12 @@
 import React, { PropTypes } from 'react';
-import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { colors } from '~/styles';
 const { width } = Dimensions.get('window');
@@ -17,9 +24,11 @@ const GalleryItem = (props) => {
       </View>
       <Image source={{uri: props.photoUrl}} style={styles.image}/>
       <View style={styles.iconsContainer}>
-        {props.liked === true
-        ? <Icon name="ios-heart" size={30} color='#ed4956'/>
-        : <Icon name="ios-heart-outline" size={30} color='#999'/>}
+        <TouchableOpacity onPress={props.liked === true ? props.onUnlike : props.onLike}>
+          {props.liked === true
+          ? <Icon name="ios-heart" size={30} color='#ed4956'/>
+          : <Icon name="ios-heart-outline" size={30} color='#999'/>}
+        </TouchableOpacity>
       </View>
       <View style={styles.commentsContainer}>
         <View style={styles.captionItem}>
@@ -37,6 +46,8 @@ GalleryItem.propTypes = {
   avatarUrl: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
   liked: PropTypes.bool.isRequired,
+  onLike: PropTypes.func.isRequired,
+  onUnlike: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({

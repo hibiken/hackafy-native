@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { ListView } from 'react-native';
 import { connect } from 'react-redux';
 import { Home, GalleryItem } from '~/components';
-import { fetchPosts } from '~/redux/actions';
+import { fetchPosts, likePost, unlikePost } from '~/redux/actions';
 import {
   getAllPosts,
   getPagination,
@@ -46,6 +46,8 @@ class HomeContainer extends Component {
         avatarUrl={!!post.user && !!post.user.avatarUrl ? post.user.avatarUrl : ''}
         username={!!post.user ? post.user.username : ''}
         liked={this.props.likedPostIds.indexOf(post.id) >= 0}
+        onLike={() => this.props.dispatch(likePost(post.id))}
+        onUnlike={() => this.props.dispatch(unlikePost(post.id))}
       />
     );
   }

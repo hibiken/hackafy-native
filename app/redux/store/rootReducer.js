@@ -60,5 +60,9 @@ export const getActiveFooterTab = (state) => {
   return fromActiveFooterTab.getActiveFooterTab(state.activeFooterTab);
 };
 
+/*** Posts ***/
+export const getAllPosts = (state) => {
+  return fromPosts.getAllPosts(state.posts);
+}
 
 export default rootReducer;

@@ -3,7 +3,12 @@ import { ListView } from 'react-native';
 import { connect } from 'react-redux';
 import { Home, GalleryItem } from '~/components';
 import { fetchPosts } from '~/redux/actions';
-import { getAllPosts, getPagination, getIsFetchingPosts } from '~/redux/store/rootReducer';
+import {
+  getAllPosts,
+  getPagination,
+  getIsFetchingPosts,
+  getLikedPostIds,
+} from '~/redux/store/rootReducer';
 
 class HomeContainer extends Component {
   constructor(props) {
@@ -40,6 +45,7 @@ class HomeContainer extends Component {
         caption={post.caption}
         avatarUrl={!!post.user && !!post.user.avatarUrl ? post.user.avatarUrl : ''}
         username={!!post.user ? post.user.username : ''}
+        liked={this.props.likedPostIds.indexOf(post.id) >= 0}
       />
     );
   }
@@ -59,12 +65,14 @@ HomeContainer.propTypes = {
   navigator: PropTypes.object.isRequired,
   posts: PropTypes.array.isRequired,
   pagination: PropTypes.object.isRequired,
+  likedPostIds: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   posts: getAllPosts(state),
   pagination: getPagination(state),
   isFetching: getIsFetchingPosts(state),
+  likedPostIds: getLikedPostIds(state),
 });
 
 export default connect(

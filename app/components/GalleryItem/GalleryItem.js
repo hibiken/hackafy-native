@@ -17,11 +17,9 @@ const GalleryItem = (props) => {
       </View>
       <Image source={{uri: props.photoUrl}} style={styles.image}/>
       <View style={styles.iconsContainer}>
-        <Icon
-          name="ios-heart-outline"
-          size={30}
-          color='#999'
-        />
+        {props.liked === true
+        ? <Icon name="ios-heart" size={30} color='#ed4956'/>
+        : <Icon name="ios-heart-outline" size={30} color='#999'/>}
       </View>
       <View style={styles.commentsContainer}>
         <View style={styles.captionItem}>
@@ -38,6 +36,7 @@ GalleryItem.propTypes = {
   caption: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
+  liked: PropTypes.bool.isRequired,
 }
 
 const styles = StyleSheet.create({

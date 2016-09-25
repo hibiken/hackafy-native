@@ -34,10 +34,18 @@ class HomeContainer extends Component {
   }
 
   renderRow = (post) => {
-    return <GalleryItem photoUrl={post.photoUrl} caption={post.caption} />
+    return (
+      <GalleryItem
+        photoUrl={post.photoUrl}
+        caption={post.caption}
+        avatarUrl={!!post.user && !!post.user.avatarUrl ? post.user.avatarUrl : ''}
+        username={!!post.user ? post.user.username : ''}
+      />
+    );
   }
 
   render() {
+    console.log('posts', this.props.posts);
     return (
       <Home
         dataSource={this.state.dataSource}

@@ -4,7 +4,6 @@ import { HackafyNavbar, Gear, GalleryItem } from '~/components';
 const { height } = Dimensions.get('window');
 
 const Home = (props) => {
-  console.log('props', props);
   return (
     <View>
       <HackafyNavbar title="Home"/>

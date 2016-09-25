@@ -12,6 +12,7 @@ const Home = (props) => {
         dataSource={props.dataSource}
         renderRow={props.renderRow}
         style={styles.listView}
+        onEndReached={() => props.fetchPosts()}
       />
     </View>
   );
@@ -20,6 +21,7 @@ const Home = (props) => {
 Home.propTypes = {
   dataSource: PropTypes.object.isRequired,
   renderRow: PropTypes.func.isRequired,
+  fetchPosts: PropTypes.func.isRequired,
 };
 
 const styles = {

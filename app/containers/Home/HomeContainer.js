@@ -3,7 +3,7 @@ import { ListView } from 'react-native';
 import { connect } from 'react-redux';
 import { Home, GalleryItem } from '~/components';
 import { fetchPosts } from '~/redux/actions';
-import { getAllPosts } from '~/redux/store/rootReducer';
+import { getAllPosts, getPagination, getIsFetchingPosts } from '~/redux/store/rootReducer';
 
 class HomeContainer extends Component {
   constructor(props) {
@@ -14,6 +14,10 @@ class HomeContainer extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.dispatch(fetchPosts());
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.posts !== this.props.posts) {
       this.setState({
@@ -22,27 +26,37 @@ class HomeContainer extends Component {
     }
   }
 
+  fetchNextPosts = () => {
+    const { nextPage, currentPage, totalPages } = this.props.pagination;
+    if (nextPage && currentPage < totalPages && !this.props.isFetching) {
+      this.props.dispatch(fetchPosts());
+    }
+  }
+
   renderRow = (post) => {
     return <GalleryItem photoUrl={post.photoUrl} caption={post.caption} />
   }
 
-  componentDidMount() {
-    this.props.dispatch(fetchPosts());
-  }
-
   render() {
     return (
-      <Home dataSource={this.state.dataSource} renderRow={this.renderRow}/>
+      <Home
+        dataSource={this.state.dataSource}
+        renderRow={this.renderRow}
+        fetchPosts={this.fetchNextPosts}
+      />
     );
   }
 }
 HomeContainer.propTypes = {
   navigator: PropTypes.object.isRequired,
   posts: PropTypes.array.isRequired,
+  pagination: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   posts: getAllPosts(state),
+  pagination: getPagination(state),
+  isFetching: getIsFetchingPosts(state),
 });
 
 export default connect(

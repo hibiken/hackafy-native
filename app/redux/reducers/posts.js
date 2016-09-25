@@ -10,6 +10,7 @@ const initialState = {
   allIds: [],
   byId: {},
   isFetching: false,
+  pagination: {},
 };
 
 const allIds = (state = initialState.allIds, action) => {
@@ -57,10 +58,20 @@ const isFetching = (state = initialState.isFetching, action) => {
   }
 }
 
+const pagination = (state = initialState.pagination, action) => {
+  switch (action.type) {
+    case FETCH_POSTS_SUCCESS:
+      return action.pagination;
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   allIds,
   byId,
   isFetching,
+  pagination,
 });
 
 export const getPostByIds = (state, ids = []) => {
@@ -71,3 +82,7 @@ export const getAllPosts = (state) => {
   const { allIds, byId } = state;
   return allIds.map(id => byId[id]);
 }
+
+export const getPagination = (state) => state.pagination;
+
+export const getIsFetching = (state) => state.isFetching;

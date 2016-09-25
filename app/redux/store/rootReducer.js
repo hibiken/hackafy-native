@@ -63,6 +63,14 @@ export const getActiveFooterTab = (state) => {
 /*** Posts ***/
 export const getAllPosts = (state) => {
   return fromPosts.getAllPosts(state.posts);
+};
+
+export const getIsFetchingPosts = (state) => {
+  return fromPosts.getIsFetching(state.posts);
 }
+
+export const getPagination = (state) => {
+  return fromPosts.getPagination(state.posts);
+};
 
 export default rootReducer;

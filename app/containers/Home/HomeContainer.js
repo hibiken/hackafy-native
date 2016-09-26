@@ -49,6 +49,7 @@ class HomeContainer extends Component {
         onLike={() => this.props.dispatch(likePost(post.id))}
         onUnlike={() => this.props.dispatch(unlikePost(post.id))}
         likesCount={post.likesCount}
+        createdAt={post.createdAt}
       />
     );
   }

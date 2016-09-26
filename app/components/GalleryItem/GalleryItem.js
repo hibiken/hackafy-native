@@ -9,7 +9,8 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { pluralize } from '~/utils/helpers';
-import { colors } from '~/styles';
+import moment from 'moment';
+import { colors, fontSizes } from '~/styles';
 const { width } = Dimensions.get('window');
 
 const GalleryItem = (props) => {
@@ -42,6 +43,9 @@ const GalleryItem = (props) => {
           <Text style={styles.commentUsername}>{props.username}</Text>
           <Text>{props.caption}</Text>
         </View>
+        <View style={styles.timestampContainer}>
+          <Text style={styles.timestamp}>{moment(props.createdAt).fromNow().toUpperCase()}</Text>
+        </View>
       </View>
     </View>
   );
@@ -56,6 +60,7 @@ GalleryItem.propTypes = {
   onLike: PropTypes.func.isRequired,
   onUnlike: PropTypes.func.isRequired,
   likesCount: PropTypes.number.isRequired,
+  createdAt: PropTypes.string.isRequired,
 }
 
 const styles = StyleSheet.create({
@@ -111,6 +116,14 @@ const styles = StyleSheet.create({
   commentUsername: {
     fontWeight: '600',
     marginRight: 8,
+  },
+  timestampContainer: {
+    marginTop: 6,
+    marginBottom: 3,
+  },
+  timestamp: {
+    color: '#999',
+    fontSize: 10,
   }
 })
 

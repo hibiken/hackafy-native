@@ -4,6 +4,8 @@ import {
   FETCH_POSTS_SUCCESS,
   FETCH_POSTS_FAILURE,
   AUTH_REQUEST_SUCCESS,
+  LIKE_POST,
+  UNLIKE_POST,
 } from '~/redux/actions/actionTypes';
 
 const initialState = {
@@ -29,6 +31,23 @@ const allIds = (state = initialState.allIds, action) => {
   }
 }
 
+const post = (state = {}, action) => {
+  switch (action.type) {
+    case LIKE_POST:
+      return {
+        ...state,
+        likesCount: state.likesCount + 1,
+      }
+    case UNLIKE_POST:
+      return {
+        ...state,
+        likesCount: state.likesCount - 1,
+      }
+    default:
+      return state;
+  }
+}
+
 const byId = (state = initialState.byId, action) => {
   switch (action.type) {
     case AUTH_REQUEST_SUCCESS:
@@ -41,6 +60,12 @@ const byId = (state = initialState.byId, action) => {
         nextState[post.id] = post;
         return nextState;
       }, {...state})
+    case LIKE_POST:
+    case UNLIKE_POST:
+      return {
+        ...state,
+        [action.id]: post(state[action.id], action)
+      }
     default:
       return state;
   }

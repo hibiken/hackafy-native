@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { pluralize } from '~/utils/helpers';
 import { colors } from '~/styles';
 const { width } = Dimensions.get('window');
 
@@ -31,6 +32,12 @@ const GalleryItem = (props) => {
         </TouchableOpacity>
       </View>
       <View style={styles.commentsContainer}>
+        <View style={styles.likesCountContainer}>
+          <Icon name="ios-heart" size={14} color="#262626" />
+          <Text style={styles.likesCountText}>
+            {pluralize(props.likesCount, 'like', 'likes')}
+          </Text>
+        </View>
         <View style={styles.captionItem}>
           <Text style={styles.commentUsername}>{props.username}</Text>
           <Text>{props.caption}</Text>
@@ -48,6 +55,7 @@ GalleryItem.propTypes = {
   liked: PropTypes.bool.isRequired,
   onLike: PropTypes.func.isRequired,
   onUnlike: PropTypes.func.isRequired,
+  likesCount: PropTypes.number.isRequired,
 }
 
 const styles = StyleSheet.create({
@@ -86,6 +94,16 @@ const styles = StyleSheet.create({
     paddingRight: 8,
     paddingBottom: 12,
     marginBottom: 10,
+  },
+  likesCountContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 3,
+  },
+  likesCountText: {
+    marginLeft: 4,
+    color: '#262626',
+    fontWeight: '600',
   },
   captionItem: {
     flexDirection: 'row',

@@ -32,9 +32,9 @@
 		8BF918CC52BF490A9EFD909B /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 261665CF5475459FB041B23C /* EvilIcons.ttf */; };
 		9CE8EA8AF762412890A151A7 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9098AC52FBC04A0E9B97491F /* Zocial.ttf */; };
 		A1984AF78E0644738BF1BE72 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1C5B354EAFF4F80A244EDCC /* libRCTFBSDK.a */; };
-		DBA335271D8F5A0200748AF6 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA335261D8F5A0200748AF6 /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
-		DBA335291D8F5A0A00748AF6 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA335281D8F5A0A00748AF6 /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
-		DBA3352B1D8F5A1700748AF6 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA3352A1D8F5A1700748AF6 /* FBSDKShareKit.framework */; settings = {ASSET_TAGS = (); }; };
+		DBA335271D8F5A0200748AF6 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA335261D8F5A0200748AF6 /* FBSDKCoreKit.framework */; };
+		DBA335291D8F5A0A00748AF6 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA335281D8F5A0A00748AF6 /* FBSDKLoginKit.framework */; };
+		DBA3352B1D8F5A1700748AF6 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA3352A1D8F5A1700748AF6 /* FBSDKShareKit.framework */; };
 		ED92BBA576844505AF5C2199 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75ADA61058384D5588FB8127 /* Foundation.ttf */; };
 /* End PBXBuildFile section */
 
@@ -165,6 +165,7 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		9098AC52FBC04A0E9B97491F /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		99A40A5235EE49E99E31AC26 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
+		DB10BE981D99993C00C350FD /* HackafyNative.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = HackafyNative.entitlements; path = HackafyNative/HackafyNative.entitlements; sourceTree = "<group>"; };
 		DBA335261D8F5A0200748AF6 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		DBA335281D8F5A0A00748AF6 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		DBA3352A1D8F5A1700748AF6 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -281,6 +282,7 @@
 		13B07FAE1A68108700A75B9A /* HackafyNative */ = {
 			isa = PBXGroup;
 			children = (
+				DB10BE981D99993C00C350FD /* HackafyNative.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -450,6 +452,14 @@
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = T28XHJTFZL;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -737,7 +747,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HackafyNative/HackafyNative.entitlements;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = T28XHJTFZL;
 				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -761,6 +773,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HackafyNative/HackafyNative.entitlements;
+				DEVELOPMENT_TEAM = T28XHJTFZL;
 				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

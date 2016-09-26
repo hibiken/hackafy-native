@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { pluralize } from '~/utils/helpers';
@@ -13,42 +14,65 @@ import moment from 'moment';
 import { colors, fontSizes } from '~/styles';
 const { width } = Dimensions.get('window');
 
-const GalleryItem = (props) => {
-  const avatarSource = props.avatarUrl.length === 0
-    ? require('../../images/default-avatar.jpg')
-    : {uri: props.avatarUrl};
+class GalleryItem extends Component {
+  handleImagePress = (e) => {
+    const now = new Date().getTime();
+    const DOUBLE_PRESS_DELAY = 300;
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.userInfo}>
-        <Image source={avatarSource} resizeMode='cover' style={styles.avatar} />
-        <Text style={styles.username}>{props.username}</Text>
-      </View>
-      <Image source={{uri: props.photoUrl}} style={styles.image}/>
-      <View style={styles.iconsContainer}>
-        <TouchableOpacity onPress={props.liked === true ? props.onUnlike : props.onLike}>
-          {props.liked === true
-          ? <Icon name="ios-heart" size={30} color='#ed4956'/>
-          : <Icon name="ios-heart-outline" size={30} color='#999'/>}
-        </TouchableOpacity>
-      </View>
-      <View style={styles.commentsContainer}>
-        <View style={styles.likesCountContainer}>
-          <Icon name="ios-heart" size={14} color="#262626" />
-          <Text style={styles.likesCountText}>
-            {pluralize(props.likesCount, 'like', 'likes')}
-          </Text>
+    if (this.lastImagePress && (now - this.lastImagePress) < DOUBLE_PRESS_DELAY) {
+      delete this.lastImagePress;
+      this.handleImageDoublePress(e);
+    }
+    else {
+      this.lastImagePress = now;
+    }
+  }
+
+  handleImageDoublePress = (e) => {
+    if (this.props.liked === false) {
+      this.props.onLike();
+    }
+  }
+
+  render() {
+    const avatarSource = this.props.avatarUrl.length === 0
+      ? require('../../images/default-avatar.jpg')
+      : {uri: this.props.avatarUrl};
+
+    return (
+      <View style={styles.container}>
+        <View style={styles.userInfo}>
+          <Image source={avatarSource} resizeMode='cover' style={styles.avatar} />
+          <Text style={styles.username}>{this.props.username}</Text>
         </View>
-        <View style={styles.captionItem}>
-          <Text style={styles.commentUsername}>{props.username}</Text>
-          <Text>{props.caption}</Text>
+        <TouchableWithoutFeedback onPress={this.handleImagePress}>
+          <Image source={{uri: this.props.photoUrl}} style={styles.image}/>
+        </TouchableWithoutFeedback>
+        <View style={styles.iconsContainer}>
+          <TouchableOpacity onPress={this.props.liked === true ? this.props.onUnlike : this.props.onLike}>
+            {this.props.liked === true
+            ? <Icon name="ios-heart" size={30} color='#ed4956'/>
+            : <Icon name="ios-heart-outline" size={30} color='#999'/>}
+          </TouchableOpacity>
         </View>
-        <View style={styles.timestampContainer}>
-          <Text style={styles.timestamp}>{moment(props.createdAt).fromNow().toUpperCase()}</Text>
+        <View style={styles.commentsContainer}>
+          <View style={styles.likesCountContainer}>
+            <Icon name="ios-heart" size={14} color="#262626" />
+            <Text style={styles.likesCountText}>
+              {pluralize(this.props.likesCount, 'like', 'likes')}
+            </Text>
+          </View>
+          <View style={styles.captionItem}>
+            <Text style={styles.commentUsername}>{this.props.username}</Text>
+            <Text>{this.props.caption}</Text>
+          </View>
+          <View style={styles.timestampContainer}>
+            <Text style={styles.timestamp}>{moment(this.props.createdAt).fromNow().toUpperCase()}</Text>
+          </View>
         </View>
       </View>
-    </View>
-  );
+    );
+  }
 }
 
 GalleryItem.propTypes = {
@@ -82,6 +106,9 @@ const styles = StyleSheet.create({
   },
   username: {
     fontWeight: '600',
+  },
+  imageContainer: {
+    backgroundColor: 'rgba(243, 106, 188, 0.3)',
   },
   image: {
     resizeMode: 'cover',

@@ -1,22 +1,25 @@
 import React, { PropTypes } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ListView } from 'react-native';
 import { HackafyNavbar, NotificationItem } from '~/components';
 
 const Notifications = (props) => {
   return (
     <View>
       <HackafyNavbar title="Notifications" />
-      <ScrollView>
-        {props.notifications.map(notification => (
-          <NotificationItem key={notification.id} {...notification} />
-        ))}
-      </ScrollView>
+      <ListView
+        dataSource={props.dataSource}
+        renderRow={props.renderRow}
+        enableEmptySections={true}
+        onEndReached={() => props.fetchNotifications()}
+      />
     </View>
   );
 }
 
 Notifications.propTypes = {
-  notifications: PropTypes.array.isRequired,
+  dataSource: PropTypes.object.isRequired,
+  renderRow: PropTypes.func.isRequired,
+  fetchNotifications: PropTypes.func.isRequired,
 };
 
 export default Notifications;

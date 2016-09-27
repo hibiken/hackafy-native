@@ -88,4 +88,8 @@ export const getNotificationsPagination = (state) => {
   return fromNotifications.getPagination(state.notifications);
 };
 
+export const getIsFetchingNotifications = (state) => {
+  return fromNotifications.getIsFetching(state.notifications);
+}
+
 export default rootReducer;

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { View, Text, StyleSheet, ScrollView, ListView, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, ListView, Dimensions } from 'react-native';
 import { HackafyNavbar, Gear, GalleryItem } from '~/components';
 const { height } = Dimensions.get('window');
 

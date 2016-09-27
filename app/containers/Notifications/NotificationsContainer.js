@@ -12,7 +12,9 @@ class NotificationsContainer extends Component {
   render() {
     console.log('props', this.props);
     return (
-      <Notifications />
+      <Notifications
+        notifications={this.props.notifications}
+      />
     );
   }
 }

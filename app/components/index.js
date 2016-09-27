@@ -11,3 +11,4 @@ export Close from './Icons/Close';
 export Settings from './Settings/Settings';
 export LogoutButton from './Buttons/LogoutButton';
 export GalleryItem from './GalleryItem/GalleryItem';
+export NotificationItem from './NotificationItem/NotificationItem';

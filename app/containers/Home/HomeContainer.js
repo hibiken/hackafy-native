@@ -55,7 +55,6 @@ class HomeContainer extends Component {
   }
 
   render() {
-    console.log('posts', this.props.posts);
     return (
       <Home
         dataSource={this.state.dataSource}

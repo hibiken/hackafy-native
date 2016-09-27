@@ -6,6 +6,7 @@ import {
 import { fetchPosts } from './actionCreators/fetchPosts';
 import { likePost, unlikePost } from './actionCreators/likePost';
 import { setFooterTab } from './actionCreators/activeFooterTab';
+import { fetchNotifications } from './actionCreators/fetchNotifications';
 
 export {
   handleAuthWithFirebase,
@@ -15,4 +16,5 @@ export {
   likePost,
   unlikePost,
   setFooterTab,
+  fetchNotifications,
 };

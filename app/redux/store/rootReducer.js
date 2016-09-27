@@ -3,6 +3,7 @@ import authentication, * as fromAuth from '../reducers/authentication';
 import currentUser, * as fromCurrentUser from '../reducers/currentUser';
 import activeFooterTab, * as fromActiveFooterTab from '../reducers/activeFooterTab';
 import posts, * as fromPosts from '../reducers/posts';
+import notifications, * as fromNotifications from '../reducers/notifications';
 import { LOG_OUT } from '~/redux/actions/actionTypes';
 
 const appReducer = combineReducers({
@@ -10,6 +11,7 @@ const appReducer = combineReducers({
   currentUser,
   activeFooterTab,
   posts,
+  notifications,
 });
 
 const rootReducer = (state, action) => {
@@ -75,6 +77,15 @@ export const getIsFetchingPosts = (state) => {
 
 export const getPagination = (state) => {
   return fromPosts.getPagination(state.posts);
+};
+
+/*** NOtifications ***/
+export const getAllNotifications = (state) => {
+  return fromNotifications.getAllNotifications(state.notifications);
+};
+
+export const getNotificationsPagination = (state) => {
+  return fromNotifications.getPagination(state.notifications);
 };
 
 export default rootReducer;
